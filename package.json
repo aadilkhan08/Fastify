@@ -2,7 +2,7 @@
   "name": "fastify",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
+
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -13,7 +13,9 @@
   "dependencies": {
     "@fastify/cors": "^10.0.2",
     "@fastify/env": "^5.0.2",
+    "@fastify/jwt": "^9.0.4",
     "@fastify/sensible": "^6.0.3",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
     "fastify-plugin": "^5.0.1",
