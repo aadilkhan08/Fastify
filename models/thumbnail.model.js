@@ -23,4 +23,4 @@ const thumbnailSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Thumbnail", thumbnailSchema);
+export default mongoose.model("Thumbnail", thumbnailSchema);

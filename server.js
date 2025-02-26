@@ -6,8 +6,14 @@ const fastify = Fastify({
   logger: true,
 });
 
+// register plugins
 fastify.register(import("@fastify/cors"));
+fastify.register(import("@fastify/multipart"));
 fastify.register(import("@fastify/sensible"));
+fastify.register(import("@fastify/static"), {
+  root: path.join(__dirname, "uploads"),
+  prefix: "/uploads/", // optional: default '/'
+});
 fastify.register(import("@fastify/env"), {
   dotenv: true,
   schema: {
@@ -23,6 +29,10 @@ fastify.register(import("@fastify/env"), {
 
 // Custom plugin
 fastify.register(import("./plugins/mongodb.js"));
+fastify.register(import("./plugins/jwt.js"));
+
+// register routes
+fastify.register(import("./routes/auth.route.js"), { prefix: "/api/auth" });
 
 fastify.get("/", function (request, reply) {
   reply.notFound();
@@ -59,8 +69,6 @@ fastify.get("/test", function (request, reply) {
     }
 
     reply.send({ databases: status });
-
-    reply.send({ status });
   } catch (error) {
     fastify.log.error(error);
     reply.status(500).send(error);

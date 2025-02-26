@@ -2,7 +2,7 @@ import userSchema from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 
-exports.register = async (request, reply) => {
+export const register = async (request, reply) => {
   try {
     // take data from body
     const { name, email, password, country } = request.body;
@@ -38,7 +38,7 @@ exports.register = async (request, reply) => {
   }
 };
 
-exports.login = async (request, reply) => {
+export const login = async (request, reply) => {
   try {
     // take data from body
     const { email, password } = request.body;
@@ -72,7 +72,7 @@ exports.login = async (request, reply) => {
   }
 };
 
-exports.forgotPassword = async (request, reply) => {
+export const forgotPassword = async (request, reply) => {
   try {
     // take data from body
     const { email } = request.body;
@@ -103,7 +103,7 @@ exports.forgotPassword = async (request, reply) => {
   }
 };
 
-exports.resetPassword = async (request, reply) => {
+export const resetPassword = async (request, reply) => {
   const token = request.params.token;
   const { newPassword } = request.body;
 
@@ -134,7 +134,7 @@ exports.resetPassword = async (request, reply) => {
   reply.send({ message: "Password reset successfully" });
 };
 
-exports.logout = async (request, reply) => {
+export const logout = async (request, reply) => {
   // jwt is stateless,use strategy like refresh token or blacklist token for more
   reply.send({ message: "Logged out successfully" });
 };
